@@ -32,9 +32,9 @@
 
 #include <errno.h>
 
-#if defined(HOST_ANDROID) && !defined(TARGET_ARM64) && !defined(TARGET_AMD64)
-#define USE_TKILL_ON_ANDROID 1
-#endif
+// #if defined(HOST_ANDROID) && !defined(TARGET_ARM64) && !defined(TARGET_AMD64)
+// #define USE_TKILL_ON_ANDROID 1
+// #endif
 
 #ifdef USE_TKILL_ON_ANDROID
 extern int tkill (pid_t tid, int signal);

@@ -78,9 +78,9 @@ mono_native_thread_join_handle (HANDLE thread_handle, gboolean close_handle);
 #include <zircon/syscalls.h>
 #endif
 
-#if defined(HOST_ANDROID) && !defined(TARGET_ARM64) && !defined(TARGET_AMD64)
-#define USE_TKILL_ON_ANDROID 1
-#endif
+// #if defined(HOST_ANDROID) && !defined(TARGET_ARM64) && !defined(TARGET_AMD64)
+// #define USE_TKILL_ON_ANDROID 1
+// #endif
 
 #ifdef HOST_ANDROID
 #include <errno.h>
