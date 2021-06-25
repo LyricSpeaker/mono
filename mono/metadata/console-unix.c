@@ -153,7 +153,7 @@ ves_icall_System_ConsoleDriver_InternalKeyAvailable (gint32 timeout, MonoError* 
 
 	do {
 		FD_ZERO (&rfds);
-		FD_SET (STDIN_FILENO, &rfds);
+		// FD_SET (STDIN_FILENO, &rfds);
 		if (timeout >= 0) {
 			divvy = div (timeout, 1000);
 			tv.tv_sec = divvy.quot;

@@ -1352,7 +1352,7 @@ socket_transport_connect (const char *address)
 			tv.tv_sec = 0;
 			tv.tv_usec = agent_config.timeout * 1000;
 			FD_ZERO (&readfds);
-			FD_SET (sfd, &readfds);
+			// FD_SET (sfd, &readfds);
 
 			MONO_ENTER_GC_SAFE;
 			res = select (sfd + 1, &readfds, NULL, NULL, &tv);

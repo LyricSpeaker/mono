@@ -250,8 +250,10 @@ helper_thread (void *arg)
 			for (gint i = 0; i < command_sockets->len; i++) {
 				int fd = g_array_index (command_sockets, int, i);
 
+#if 0
 				if (!FD_ISSET (fd, &rfds))
 					continue;
+#endif
 
 				char buf [64];
 				int len = read (fd, buf, sizeof (buf) - 1);
@@ -291,6 +293,7 @@ helper_thread (void *arg)
 			if (quit_command_received)
 				break;
 
+#if 0
 			if (FD_ISSET (aot_profiler.server_socket, &rfds)) {
 				int fd = accept (aot_profiler.server_socket, NULL, NULL);
 
@@ -301,6 +304,7 @@ helper_thread (void *arg)
 						g_array_append_val (command_sockets, fd);
 				}
 			}
+#endif
 		}
 
 		for (gint i = 0; i < command_sockets->len; i++)

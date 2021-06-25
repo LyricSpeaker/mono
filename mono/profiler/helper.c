@@ -93,7 +93,7 @@ mono_profhelper_add_to_fd_set (fd_set *set, int fd, int *max_fd)
 		exit (1);
 	}
 
-	FD_SET (fd, set);
+	// FD_SET (fd, set);
 
 	if (*max_fd < fd)
 		*max_fd = fd;

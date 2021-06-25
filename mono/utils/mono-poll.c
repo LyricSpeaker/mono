@@ -98,6 +98,7 @@ mono_poll (mono_pollfd *ufds, unsigned int nfds, int timeout)
 #endif
 
 		events = ufds [i].events;
+#if 0
 		if ((events & MONO_POLLIN) != 0)
 			FD_SET (fd, &rfds);
 
@@ -105,6 +106,7 @@ mono_poll (mono_pollfd *ufds, unsigned int nfds, int timeout)
 			FD_SET (fd, &wfds);
 
 		FD_SET (fd, &efds);
+#endif
 		nexc++;
 		if (fd > maxfd)
 			maxfd = fd;
@@ -139,6 +141,7 @@ mono_poll (mono_pollfd *ufds, unsigned int nfds, int timeout)
 			continue;
 
 		events = ufds [i].events;
+#if 0
 		if ((events & MONO_POLLIN) != 0 && FD_ISSET (fd, &rfds)) {
 			ufds [i].revents |= MONO_POLLIN;
 			affected--;
@@ -153,6 +156,7 @@ mono_poll (mono_pollfd *ufds, unsigned int nfds, int timeout)
 			ufds [i].revents |= MONO_POLLERR;
 			affected--;
 		}
+#endif
 
 		if (ufds [i].revents != 0)
 			count++;

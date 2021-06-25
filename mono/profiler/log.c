@@ -2937,7 +2937,7 @@ signal_helper_thread (char c)
 				int max_fd = -1;
 
 				FD_ZERO (&wfds);
-				FD_SET (client_socket, &wfds);
+				// FD_SET (client_socket, &wfds);
 
 				/*
 				* Include timeout to prevent hanging on connect call.
@@ -3249,12 +3249,14 @@ helper_thread (void *arg)
 
 		// Did we get a shutdown or detach signal?
 #ifdef HAVE_COMMAND_PIPES
+#if 0
 		if (FD_ISSET (log_profiler.pipes [0], &rfds)) {
 			char c;
 			read (log_profiler.pipes [0], &c, 1);
 			if (c == 1)
 				break;
 		}
+#endif
 #else
 		int value = mono_atomic_load_i32(&log_profiler.pipe_command);
 		if (value != 0) {
@@ -3270,8 +3272,10 @@ helper_thread (void *arg)
 		for (gint i = 0; i < command_sockets->len; i++) {
 			int fd = g_array_index (command_sockets, int, i);
 
+#if 0
 			if (!FD_ISSET (fd, &rfds))
 				continue;
+#endif
 
 			char buf [64];
 #ifdef HOST_WIN32
@@ -3296,6 +3300,7 @@ helper_thread (void *arg)
 				trigger_heapshot ();
 		}
 
+#if 0
 		if (FD_ISSET (log_profiler.server_socket, &rfds)) {
 			int fd = accept (log_profiler.server_socket, NULL, NULL);
 
@@ -3306,6 +3311,7 @@ helper_thread (void *arg)
 					g_array_append_val (command_sockets, fd);
 			}
 		}
+#endif
 
 		profiler_thread_check_detach (thread);
 	}

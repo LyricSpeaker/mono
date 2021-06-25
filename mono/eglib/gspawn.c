@@ -136,16 +136,18 @@ read_pipes (int outfd, gchar **out_str, int errfd, gchar **err_str, GError **ger
 			break;
 
 		FD_ZERO (&rfds);
+#if 0
 		if (!out_closed && outfd >= 0)
 			FD_SET (outfd, &rfds);
 		if (!err_closed && errfd >= 0)
 			FD_SET (errfd, &rfds);
+#endif
 
 		res = select (MAX (outfd, errfd) + 1, &rfds, NULL, NULL, NULL);
 		if (res > 0) {
 			if (buffer == NULL)
 				buffer = g_malloc (1024);
-			if (!out_closed && FD_ISSET (outfd, &rfds)) {
+			if (!out_closed && 0 /* FD_ISSET (outfd, &rfds) */) {
 				nread = safe_read (outfd, buffer, 1024, gerror);
 				if (nread < 0) {
 					close (errfd);
@@ -159,7 +161,7 @@ read_pipes (int outfd, gchar **out_str, int errfd, gchar **err_str, GError **ger
 				}
 			}
 
-			if (!err_closed && FD_ISSET (errfd, &rfds)) {
+			if (!err_closed && 0 /* FD_ISSET (errfd, &rfds) */) {
 				nread = safe_read (errfd, buffer, 1024, gerror);
 				if (nread < 0) {
 					close (errfd);
