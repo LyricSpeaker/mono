@@ -180,9 +180,15 @@ ios-targettv_SYSROOT = $(tvos_sysroot) -mtvos-version-min=$(TVOS_VERSION_MIN)
 ios-targetwatch_SYSROOT = $(watchos_sysroot) -mwatchos-version-min=$(WATCHOS_VERSION_MIN)
 ios-targetwatch64_32_SYSROOT = $(watchos64_32_sysroot) -mwatchos-version-min=$(WATCHOS64_32_VERSION_MIN)
 
-ios-target32_CPPFLAGS = -DHOST_IOS
-ios-target32s_CPPFLAGS = -DHOST_IOS
-ios-target64_CPPFLAGS = -DHOST_IOS
+ios-target32_CFLAGS = -fembed-bitcode -DHOST_IOS
+ios-target32_CXXFLAGS = -fembed-bitcode -DHOST_IOS
+ios-target32_CPPFLAGS = -fembed-bitcode -DHOST_IOS
+ios-target32s_CFLAGS = -fembed-bitcode -DHOST_IOS
+ios-target32s_CXXFLAGS = -fembed-bitcode -DHOST_IOS
+ios-target32s_CPPFLAGS = -fembed-bitcode -DHOST_IOS
+ios-target64_CFLAGS = -fembed-bitcode -DHOST_IOS
+ios-target64_CXXFLAGS = -fembed-bitcode -DHOST_IOS
+ios-target64_CPPFLAGS = -fembed-bitcode -DHOST_IOS
 ios-targettv_CPPFLAGS = -DHOST_IOS -DHOST_TVOS
 ios-targetwatch_CPPFLAGS = -DHOST_IOS -DHOST_WATCHOS
 ios-targetwatch64_32_CPPFLAGS = -DHOST_IOS -DHOST_WATCHOS
